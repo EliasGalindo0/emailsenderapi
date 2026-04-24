@@ -1,0 +1,17 @@
+# Variáveis de ambiente (nunca versionar)
+.env
+
+# Artefatos .NET
+EmailSenderApi/bin/
+EmailSenderApi/obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Rider
+.idea/
+
+# Logs
+*.log

@@ -1,0 +1,29 @@
+services:
+
+  api:
+    build:
+      context: ./EmailSenderApi
+      dockerfile: Dockerfile
+    container_name: emailsender_api
+    ports:
+      - "${API_PORT:-8080}:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT:-Development}
+      - SmtpSettings__Host=${SMTP_HOST:-mailhog}
+      - SmtpSettings__Port=${SMTP_PORT:-1025}
+      - SmtpSettings__UseSsl=${SMTP_USE_SSL:-false}
+      - SmtpSettings__Username=${SMTP_USERNAME:-}
+      - SmtpSettings__Password=${SMTP_PASSWORD:-}
+      - SmtpSettings__SenderName=${SMTP_SENDER_NAME:-Email Sender API}
+      - SmtpSettings__SenderEmail=${SMTP_SENDER_EMAIL:-noreply@emailsenderapi.local}
+    depends_on:
+      - mailhog
+    restart: unless-stopped
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: emailsender_mailhog
+    ports:
+      - "${MAILHOG_SMTP_PORT:-1025}:1025"
+      - "${MAILHOG_UI_PORT:-8025}:8025"
+    restart: unless-stopped
