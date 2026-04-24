@@ -1,3 +1,4 @@
+using EmailSenderApi.Infrastructure;
 using EmailSenderApi.Services;
 using EmailSenderApi.Settings;
 using Hangfire;
@@ -26,7 +27,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "Email Sender API", Version = "v1" });
-    c.EnableAnnotations();
 });
 
 var app = builder.Build();
@@ -35,7 +35,11 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 // Dashboard do Hangfire — acesse em /hangfire
-app.UseHangfireDashboard("/hangfire");
+// ATENÇÃO: em produção substitua AllowAllDashboardFilter por autenticação real
+app.UseHangfireDashboard("/hangfire", new DashboardOptions
+{
+    Authorization = new[] { new AllowAllDashboardFilter() }
+});
 
 app.UseAuthorization();
 app.MapControllers();

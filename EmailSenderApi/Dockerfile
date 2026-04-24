@@ -6,7 +6,7 @@ COPY EmailSenderApi.csproj .
 RUN dotnet restore
 
 COPY . .
-RUN dotnet publish -c Release -o /app/publish --no-restore
+RUN dotnet publish -c Release -o /app/publish
 
 # --- Runtime ---
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime

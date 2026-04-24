@@ -7,17 +7,15 @@ default:
 
 # ── Setup ────────────────────────────────────────────────────────────────────
 
-# Configuração inicial: copia .env e appsettings de exemplo, restaura dependências
+# Configuração inicial: copia .env e appsettings de exemplo
 setup:
     @echo "==> Copiando .env.example → .env..."
     cp -n .env.example .env || true
     @echo "==> Copiando appsettings de exemplo..."
     cp -n {{project}}/appsettings.json {{project}}/appsettings.Local.json || true
-    @echo "==> Restaurando dependências..."
-    cd {{project}} && dotnet restore
     @echo ""
     @echo "Pronto! Edite .env com suas credenciais antes de subir o projeto."
-    @echo "Em seguida rode: just up   (Docker) ou: just run   (local)"
+    @echo "Em seguida rode: just up   (Docker) ou: just restore && just run   (local)"
 
 # ── Desenvolvimento local (sem Docker) ───────────────────────────────────────
 

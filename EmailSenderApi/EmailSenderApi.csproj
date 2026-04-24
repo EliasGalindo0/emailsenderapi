@@ -9,8 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
-    <PackageReference Include="MailKit" Version="4.7.0" />
-    <PackageReference Include="MimeKit" Version="4.7.0" />
+    <PackageReference Include="MailKit" Version="4.8.0" />
+    <PackageReference Include="MimeKit" Version="4.8.0" />
     <PackageReference Include="Hangfire.AspNetCore" Version="1.8.14" />
     <PackageReference Include="Hangfire.InMemory" Version="0.10.1" />
   </ItemGroup>
